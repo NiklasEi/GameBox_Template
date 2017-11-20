@@ -1,0 +1,76 @@
+# ----------------------------------------------------------------------------#
+#                                                                             #
+#                           Game Template config                              #
+#                                                                             #
+# ----------------------------------------------------------------------------#
+
+# name of the language file (in the folder 'language')
+langFile: "default"
+
+rules:
+  # enable/disable sound
+  playSounds: true
+
+
+# requires vault and an economy plugin
+#   to enable economy do not forget to enable it for GameBox too
+economy:
+  enabled: false
+
+gameBox:
+  mainButton:
+    # define the Material and data for the button (format: 'material:data')
+    materialData: "357"
+    # display name of the button
+    #   ToDo: name
+    displayName: "&3Template"
+    # lore of the button
+    lore:
+    - ""
+    - "&1Some funny and short description"
+    - ""
+    - "&5&o\"blub blub blub...\""
+  gameButtons:
+    game1:
+      materialData: "5:2"
+      #   ToDo: name
+      displayName: "&aTemplate"
+      lore:
+      - ""
+      - "&6Play the game!"
+      - ""
+      - "&5&o\"Muhahaha!!\""
+      slot: 20
+
+      # from here on you have to load the options in the game manager in
+      #     loadGameRules(ConfigurationSection buttonSec, String buttonID)
+      cost: 0
+      # if true the best score of this button is saved
+      saveStats: true
+
+      # add any custom game settings here...
+
+    # add more game types... with/without top lists, different settings/cost/rewards
+
+
+  topListButtons:
+    # use the same key as the game you want to display the top list for
+    #   for that button 'saveStats' must be true (see above)
+    game1:
+      materialData: "6:2"
+      #   ToDo: name
+      displayName: "&6Template &c&lTop list"
+      slot: 24
+      # inventory title of the top list (%player% and %game%)
+      #   ToDo: name
+      inventoryTitle: '     &6Template &rTop List'
+      # Lore of the skulls in the inventory.
+      # Use %rank% for the rank and %score% for the highest score of the player
+      #   ToDo: customise with your save type in top list (score, high number, wins...)
+      skullLore:
+      - ''
+      - '&6Rank:&1 %rank%'
+      - '&6Score:&1 %score%'
+
+
+
