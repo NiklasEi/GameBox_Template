@@ -61,6 +61,7 @@ public class TemplateManager implements GameManager {
         // first arg is the buttonID from #loadGameRules()
 
         this.players.put(players[0].getUniqueId(), strings[0]);
+        clicks.put(players[0].getUniqueId(), 0);
 
         return GameBox.GAME_STARTED;
     }
@@ -72,6 +73,7 @@ public class TemplateManager implements GameManager {
                     , rules.get(players.get(uuid)).getKey(), clicks.get(uuid)
                     , rules.get(players.get(uuid)).getSaveTypes().iterator().next());
         players.remove(uuid);
+        clicks.remove(uuid);
     }
 
     @Override
