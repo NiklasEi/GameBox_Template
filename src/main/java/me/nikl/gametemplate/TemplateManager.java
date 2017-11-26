@@ -16,12 +16,16 @@ import java.util.UUID;
 
 /**
  * Created by nikl on 22.11.17.
+ *
+ * This example game simply prints a message when you click while you are in-game
  */
 public class TemplateManager implements GameManager {
 
     private GameBox gameBox;
 
-    private HashSet<UUID> players = new HashSet<>();
+    private HashMap<UUID, String> players = new HashMap<>();
+
+    private HashMap<UUID, Integer> clicks = new HashMap<>();
 
     private HashMap<String, GameRule> rules = new HashMap<>();
 
@@ -33,7 +37,12 @@ public class TemplateManager implements GameManager {
     public boolean onInventoryClick(InventoryClickEvent inventoryClickEvent) {
         // here the real game takes place
         inventoryClickEvent.getWhoClicked().sendMessage(" You are in the template game");
+        addClick(inventoryClickEvent.getWhoClicked().getUniqueId());
         return true;
+    }
+
+    private void addClick(UUID uniqueId) {
+        clicks.put(uniqueId, clicks.get(uniqueId) + 1);
     }
 
     @Override
@@ -44,20 +53,24 @@ public class TemplateManager implements GameManager {
 
     @Override
     public boolean isInGame(UUID uuid) {
-        return players.contains(uuid);
+        return players.containsKey(uuid);
     }
 
     @Override
     public int startGame(Player[] players, boolean playSounds, String... strings) {
         // first arg is the buttonID from #loadGameRules()
 
-
+        this.players.put(players[0].getUniqueId(), strings[0]);
 
         return GameBox.GAME_STARTED;
     }
 
     @Override
     public void removeFromGame(UUID uuid) {
+        if(rules.get(players.get(uuid)).isSaveStats())
+            gameBox.getDataBase().addStatistics(uuid, Main.gameID
+                    , rules.get(players.get(uuid)).getKey(), clicks.get(uuid)
+                    , rules.get(players.get(uuid)).getSaveTypes().iterator().next());
         players.remove(uuid);
     }
 
@@ -68,7 +81,7 @@ public class TemplateManager implements GameManager {
         // Then put the rule with ID as key in a Map<String, ? extends GameRule> to return in #getGameRules()
 
         // game results will be saved and can be used in a top list
-        boolean saveStats = true;
+        boolean saveStats = configurationSection.getBoolean("saveStats", false);
 
         // type of score that is saved/displayed in top list
         HashSet<SaveType> saveTypes = new HashSet<>();
@@ -79,6 +92,6 @@ public class TemplateManager implements GameManager {
 
     @Override
     public Map<String, ? extends GameRule> getGameRules() {
-        return null;
+        return rules;
     }
 }
