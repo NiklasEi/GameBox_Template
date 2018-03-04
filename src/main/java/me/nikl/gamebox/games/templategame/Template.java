@@ -1,21 +1,29 @@
-package me.nikl.gametemplate;
+package me.nikl.gamebox.games.templategame;
 
 import me.nikl.gamebox.GameBox;
-import me.nikl.gamebox.games.Game;
-import me.nikl.gamebox.games.GameSettings;
+import me.nikl.gamebox.game.Game;
+import me.nikl.gamebox.game.GameSettings;
+import me.nikl.gamebox.games.GameTemplatePlugin;
 
 /**
- * Created by nikl on 21.11.17.
+ * @author Niklas Eicker
+ *
+ * Main class of the game. The path to this class has to be passed to the module (@see {@link GameTemplatePlugin})
  */
 public class Template extends Game {
 
     public Template(GameBox gameBox){
-        super(gameBox, Main.gameID, new String[]{"test", "second"});
+        super(gameBox, GameTemplatePlugin.gameID);
     }
 
     @Override
     public void onDisable() {
         // save your game specific stuff
+    }
+
+    @Override
+    public void init() {
+
     }
 
     @Override
@@ -28,11 +36,11 @@ public class Template extends Game {
 
     @Override
     public void loadLanguage() {
-        gameLang = new TemplateLanguage(gameBox);
+        gameLang = new TemplateLanguage(this);
     }
 
     @Override
     public void loadGameManager() {
-        gameManager = new TemplateManager(gameBox);
+        gameManager = new TemplateManager(this);
     }
 }

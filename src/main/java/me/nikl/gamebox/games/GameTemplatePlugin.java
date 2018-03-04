@@ -1,4 +1,4 @@
-package me.nikl.gametemplate;
+package me.nikl.gamebox.games;
 
 import me.nikl.gamebox.GameBox;
 import me.nikl.gamebox.Module;
@@ -10,8 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * Main class of the GameBox game-template
  */
-public class Main extends JavaPlugin{
-    public static final String gameID = "uniquegameid";
+public class GameTemplatePlugin extends JavaPlugin{
+    public static final String gameID = "templategame";
 
     @Override
     public void onEnable(){
@@ -29,7 +29,8 @@ public class Main extends JavaPlugin{
         // As this plugin contains an external GameBox module, We have to use the constructor
         //      Module(GameBox, String, String, JavaPlugin)
         new Module(gameBox, gameID
-                , "me.nikl.gametemplate.Template", this);
+                , "me.nikl.gamebox.games.templategame.Template"
+                , this);
     }
 
     @Override

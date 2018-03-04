@@ -1,7 +1,6 @@
-package me.nikl.gametemplate;
+package me.nikl.gamebox.games.templategame;
 
-import me.nikl.gamebox.GameBox;
-import me.nikl.gamebox.games.GameLanguage;
+import me.nikl.gamebox.game.GameLanguage;
 
 /**
  * Created by nikl on 22.11.17.
@@ -9,11 +8,10 @@ import me.nikl.gamebox.games.GameLanguage;
  * The actual language file is loaded in the super classes, as well as some standard messages.
  */
 public class TemplateLanguage extends GameLanguage {
-
     // save your messages as fields
 
-    public TemplateLanguage(GameBox plugin) {
-        super(plugin, Main.gameID);
+    public TemplateLanguage(Template template) {
+        super(template);
     }
 
     @Override
