@@ -6,6 +6,7 @@ import me.nikl.gamebox.game.rules.GameRule;
 import me.nikl.gamebox.game.rules.GameRuleRewards;
 import me.nikl.gamebox.games.GameTemplatePlugin;
 import me.nikl.gamebox.game.exceptions.GameStartException;
+import me.nikl.gamebox.nms.NmsFactory;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -34,8 +35,10 @@ public class TemplateManager implements GameManager {
     @Override
     public void onInventoryClick(InventoryClickEvent inventoryClickEvent) {
         // here the real game takes place
-        inventoryClickEvent.getWhoClicked().sendMessage(" You are in the template game");
-        addClick(inventoryClickEvent.getWhoClicked().getUniqueId());
+        UUID uuid = inventoryClickEvent.getWhoClicked().getUniqueId();
+        addClick(uuid);
+        NmsFactory.getNmsUtility().updateInventoryTitle((Player)inventoryClickEvent.getWhoClicked()
+                ,((TemplateLanguage)template.getGameLang()).GAME_TITLE.replace("%clicks%", String.valueOf(clicks.get(uuid))));
         return;
     }
 
@@ -60,6 +63,7 @@ public class TemplateManager implements GameManager {
         if (strings == null) throw new GameStartException(GameStartException.Reason.ERROR);
 
         this.players.put(players[0].getUniqueId(), strings[0]);
+        players[0].openInventory(template.createInventory(54, ((TemplateLanguage)template.getGameLang()).GAME_TITLE.replace("%clicks%", "0")));
         clicks.put(players[0].getUniqueId(), 0);
     }
 
