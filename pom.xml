@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.nikl.gametemplate</groupId>
-    <artifactId>GameTemplate</artifactId>
+    <groupId>me.nikl.gamebox.games</groupId> <!-- Todo -->
+    <artifactId>GameTemplate</artifactId> <!-- Todo -->
     <version>1.0.0</version>
 
     <repositories>
@@ -14,8 +14,8 @@
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
-            <id>GameBox</id>
-            <url>https://www.myget.org/F/nikl/maven</url>
+            <id>nikl-repo</id>
+            <url>https://repo.nikl.me/artifactory/repositories</url>
         </repository>
     </repositories>
 
@@ -35,11 +35,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
 </project>
