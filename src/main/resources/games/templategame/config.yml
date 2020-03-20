@@ -19,8 +19,8 @@ economy:
 
 gameBox:
   mainButton:
-    # define the Material and data for the button (format: 'material:data')
-    materialData: "357"
+    # define the Material for the main button
+    materialData: "GRASS"
     # display name of the button
     #   ToDo: name
     displayName: "&3Template"
@@ -29,10 +29,10 @@ gameBox:
     - ""
     - "&1Some funny and short description"
     - ""
-    - "&5&o\"blub blub blub...\""
+    - "&5&o\"bli bla blub...\""
   gameButtons:
     game1:
-      materialData: "5:2"
+      materialData: "GRASS"
       #   ToDo: name
       displayName: "&aTemplate"
       lore:
@@ -57,10 +57,11 @@ gameBox:
     # use the same key as the game you want to display the top list for
     #   for that button 'saveStats' must be true (see above)
     game1:
-      materialData: "6:2"
+      materialData: "GRASS"
       #   ToDo: name
       displayName: "&6Template &c&lTop list"
       slot: 24
+      glow: true
       # inventory title of the top list (%player% and %game%)
       #   ToDo: name
       inventoryTitle: '     &6Template &rTop List'

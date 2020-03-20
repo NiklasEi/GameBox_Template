@@ -3,17 +3,17 @@ package me.nikl.gamebox.games.templategame;
 import me.nikl.gamebox.GameBox;
 import me.nikl.gamebox.game.Game;
 import me.nikl.gamebox.game.GameSettings;
-import me.nikl.gamebox.games.GameTemplatePlugin;
+import me.nikl.gamebox.games.GameTemplateModule;
 
 /**
  * @author Niklas Eicker
  *
- * Main class of the game. The path to this class has to be passed to the module (@see {@link GameTemplatePlugin})
+ * Main class of the game. This class has to be passed to the module (@see {@link GameTemplateModule})
  */
 public class Template extends Game {
 
     public Template(GameBox gameBox){
-        super(gameBox, GameTemplatePlugin.gameID);
+        super(gameBox, GameTemplateModule.gameID);
     }
 
     @Override

@@ -1,6 +1,0 @@
-name: GameTemplate
-author: Nikl
-main: me.nikl.gamebox.games.GameTemplatePlugin
-version: 1.0.0
-website: nikl.me
-depend: [GameBox]

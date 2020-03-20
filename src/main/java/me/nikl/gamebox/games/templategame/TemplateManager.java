@@ -1,10 +1,10 @@
 package me.nikl.gamebox.games.templategame;
 
 import me.nikl.gamebox.data.toplist.SaveType;
-import me.nikl.gamebox.game.manager.GameManager;
+import me.nikl.gamebox.game.manager.EasyManager;
 import me.nikl.gamebox.game.rules.GameRule;
 import me.nikl.gamebox.game.rules.GameRuleRewards;
-import me.nikl.gamebox.games.GameTemplatePlugin;
+import me.nikl.gamebox.games.GameTemplateModule;
 import me.nikl.gamebox.game.exceptions.GameStartException;
 import me.nikl.gamebox.nms.NmsFactory;
 import org.bukkit.configuration.ConfigurationSection;
@@ -22,7 +22,7 @@ import java.util.UUID;
  *
  * This example game simply prints a message when you click while you are in-game
  */
-public class TemplateManager implements GameManager {
+public class TemplateManager extends EasyManager {
     private Template template;
     private HashMap<UUID, String> players = new HashMap<>();
     private HashMap<UUID, Integer> clicks = new HashMap<>();
@@ -39,7 +39,6 @@ public class TemplateManager implements GameManager {
         addClick(uuid);
         NmsFactory.getNmsUtility().updateInventoryTitle((Player)inventoryClickEvent.getWhoClicked()
                 ,((TemplateLanguage)template.getGameLang()).GAME_TITLE.replace("%clicks%", String.valueOf(clicks.get(uuid))));
-        return;
     }
 
     private void addClick(UUID uniqueId) {
@@ -49,7 +48,6 @@ public class TemplateManager implements GameManager {
     @Override
     public void onInventoryClose(InventoryCloseEvent inventoryCloseEvent) {
         removeFromGame(inventoryCloseEvent.getPlayer().getUniqueId());
-        return;
     }
 
     @Override
@@ -70,7 +68,7 @@ public class TemplateManager implements GameManager {
     @Override
     public void removeFromGame(UUID uuid) {
         if(rules.get(players.get(uuid)).isSaveStats())
-            template.getGameBox().getDataBase().addStatistics(uuid, GameTemplatePlugin.gameID
+            template.getGameBox().getDataBase().addStatistics(uuid, GameTemplateModule.gameID
                     , rules.get(players.get(uuid)).getKey(), clicks.get(uuid)
                     , rules.get(players.get(uuid)).getSaveType());
         players.remove(uuid);
@@ -99,14 +97,5 @@ public class TemplateManager implements GameManager {
     @Override
     public Map<String, ? extends GameRule> getGameRules() {
         return rules;
-    }
-
-    /*
-    This method can be ignored and does not have to return anything.
-    It has the purpose to be able to use an InventoryHolder based gui system for the games.
-     */
-    @Override
-    public Inventory getInventory() {
-        return null;
     }
 }
