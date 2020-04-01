@@ -12,8 +12,8 @@
     <description>Small template to help you write your own games</description>
 
     <scm>
-        <url>https://github.com/NiklasEi/cookieclicker-for-gamebox</url>
-        <connection>git@github.com:NiklasEi/cookieclicker-for-gamebox.git</connection>
+        <url>https://github.com/NiklasEi/template-module-for-gamebox</url>
+        <connection>git@github.com:NiklasEi/template-module-for-gamebox.git</connection>
     </scm>
 
     <build>

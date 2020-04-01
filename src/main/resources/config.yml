@@ -1,4 +1,0 @@
-# here you could possibly add configuration for the plugin itself
-# If this plugin only contains gamebox modules all configuration options
-#     should be in the games/moduleID/config.yml files
-#     In this case this plugin would also not create another folder in the server folder
