@@ -11,7 +11,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,7 +67,7 @@ public class TemplateManager extends EasyManager {
     @Override
     public void removeFromGame(UUID uuid) {
         if(rules.get(players.get(uuid)).isSaveStats())
-            template.getGameBox().getDataBase().addStatistics(uuid, GameTemplateModule.gameID
+            template.getGameBox().getDataBase().addStatistics(uuid, GameTemplateModule.gameId
                     , rules.get(players.get(uuid)).getKey(), clicks.get(uuid)
                     , rules.get(players.get(uuid)).getSaveType());
         players.remove(uuid);

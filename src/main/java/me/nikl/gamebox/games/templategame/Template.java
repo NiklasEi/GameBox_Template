@@ -13,7 +13,7 @@ import me.nikl.gamebox.games.GameTemplateModule;
 public class Template extends Game {
 
     public Template(GameBox gameBox){
-        super(gameBox, GameTemplateModule.gameID);
+        super(gameBox, GameTemplateModule.gameId);
     }
 
     @Override
